@@ -16,6 +16,7 @@ set nobackup
 set number
 set relativenumber
 set clipboard=unnamedplus
+set colorcolumn=80
 
 """"" Plugins
 call plug#begin('~/.vim/plugged')
@@ -43,6 +44,10 @@ Plug 'jelera/vim-javascript-syntax'
 "nerdtree
 Plug 'preservim/nerdtree'
 "Vim Fugitive (GIT)
+"Terraform
+Plug 'hashivim/vim-terraform'
+" Auto pairs complete
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 "set colorscheme
@@ -58,6 +63,7 @@ let mapleader = " "
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 autocmd FileType python map <buffer> <leader>p :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python map <buffer> <leader>pf :w<CR>:exec '!autopep8 --in-place -a -a' shellescape(@%, 1)<CR>
 
 "jump screens
 nnoremap <leader>h <C-W><C-H>
@@ -93,13 +99,14 @@ set updatetime=300
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function! s:check_back_space() abort
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
@@ -129,6 +136,13 @@ let NERDTreeShowLineNumbers=1
 autocmd FileType nerdtree setlocal relativenumber
 let NERDTreeQuitOnOpen=1
 
+let NERDTreeShowHidden=1
+
 "FuzzyFinder
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fg :GFiles<CR>
+
+"switch between files
+nnoremap <leader>j :bp<CR>
+nnoremap <leader>k :bn<CR>
+
