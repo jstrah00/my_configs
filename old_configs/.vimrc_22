@@ -100,7 +100,7 @@ set updatetime=300
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 
-inoremap <silent><expr> <TAB>
+noremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
@@ -146,3 +146,6 @@ nnoremap <leader>fg :GFiles<CR>
 nnoremap <leader>j :bp<CR>
 nnoremap <leader>k :bn<CR>
 
+"half page up, and down, on center
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
