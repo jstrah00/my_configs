@@ -18,6 +18,15 @@ require("nvim-tree").setup({
       open_file = {
           quit_on_open = true;
       }
+  },
+  update_focused_file = {
+      enable = true,
+      update_cwd = true,
+      ignore_list = {},
+  },
+  view = {
+      number = true,
+      relativenumber = true,
   }
 })
 vim.keymap.set("n", "<leader>nt", vim.cmd.NvimTreeToggle)
