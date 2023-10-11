@@ -37,4 +37,5 @@ vim.keymap.set("n", "<leader>k", "<C-W><C-K>")
 vim.keymap.set("n", "<leader>l", "<C-W><C-L>")
 
 
-
+vim.keymap.set("v", "<Tab>", ">gv")
+vim.keymap.set("v", "<S-Tab>", "<gv")
