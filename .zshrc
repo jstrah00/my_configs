@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux zsh-autosuggestions)
+plugins=(git tmux zsh-autosuggestions z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -107,3 +107,12 @@ alias stuff='cd /Users/julian/Desktop/my_stuff'
 alias h='cd ~'
 alias gp='k get pod'
 alias lf='k logs -f '
+alias awslogin='aws sso login --profile secops'
+
+
+source /Users/julian/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+
+# auto suggestion
+# bindkey '^ e' complete-word
